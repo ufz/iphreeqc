@@ -250,6 +250,7 @@ calc_dielectrics(LDBLE tc, LDBLE pa)
 	                           = 1.671008e-3 (esu^2 / (erg/K)) / (eps_r * T) */
 	LDBLE e2_DkT = 1.671008e-3 / (eps_r * T);
 
+	const double pi = 3.14159265358979;
 	DH_B = sqrt(8 * pi * AVOGADRO * e2_DkT * rho_0 / 1e3);  // Debye length parameter, 1/cm(mol/kg)^-0.5
 
 	DH_A = DH_B * e2_DkT / (2. * LOG_10); //(mol/kg)^-0.5

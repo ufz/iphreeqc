@@ -6,6 +6,7 @@
 #include <string>				// std::string
 #include <list>					// std::list
 #include <vector>				// std::vector
+#include <set>
 
 #include "NumKeyword.h"
 #include "PPassemblageComp.h"
