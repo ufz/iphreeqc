@@ -1,6 +1,8 @@
-cmake_minimum_required (VERSION 2.8)
+cmake_minimum_required (VERSION 3.8)
 
 project (IPhreeqc CXX C)
+
+set(CMAKE_CXX_STANDARD 11)
 
 # check if this is the root project
 if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
