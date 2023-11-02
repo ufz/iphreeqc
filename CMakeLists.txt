@@ -254,6 +254,13 @@ set(IPhreeqc_Headers ${IPhreeqc_SOURCES})
 list(FILTER IPhreeqc_Headers INCLUDE REGEX ".*\.h")
 list(FILTER IPhreeqc_Headers INCLUDE REGEX "phreeqcpp")
 set(IPhreeqc_Top_Headers src/IPhreeqc.h src/IPhreeqc.hpp src/IPhreeqcCallbacks.h src/Var.h)
+set(IPhreeqc_Common_Headers
+  src/phreeqcpp/common/Parser.h
+  src/phreeqcpp/common/PHRQ_base.h
+  src/phreeqcpp/common/PHRQ_io.h
+  src/phreeqcpp/common/phrqtype.h
+  src/phreeqcpp/common/Utils.h
+)
 
 if (IPHREEQC_ENABLE_MODULE)
   SET(IPhreeqc_SRC
@@ -321,6 +328,7 @@ if (STANDALONE_BUILD EQUAL 1)
   install(TARGETS IPhreeqc DESTINATION ${CMAKE_INSTALL_LIBDIR})
   install(FILES ${IPhreeqc_Top_Headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
   install(FILES ${IPhreeqc_Headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/phreeqcpp)
+  install(FILES ${IPhreeqc_Common_Headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/phreeqcpp/common)
   if (WIN32)
     install(FILES ${IPhreeqc_SRC} DESTINATION src)
   else()
