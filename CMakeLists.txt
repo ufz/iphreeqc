@@ -250,14 +250,10 @@ set_target_properties(IPhreeqc PROPERTIES DEBUG_POSTFIX "d")
 set_target_properties(IPhreeqc PROPERTIES MINSIZEREL_POSTFIX "msr")
 set_target_properties(IPhreeqc PROPERTIES RELWITHDEBINFO_POSTFIX "rwdi")
 
-SET(IPhreeqc_Headers
-${PROJECT_SOURCE_DIR}/src/IPhreeqc.h
-${PROJECT_SOURCE_DIR}/src/IPhreeqc.hpp
-${PROJECT_SOURCE_DIR}/src/IPhreeqcCallbacks.h
-${PROJECT_SOURCE_DIR}/src/phreeqcpp/PhreeqcKeywords/Keywords.h
-${PROJECT_SOURCE_DIR}/src/phreeqcpp/common/PHRQ_io.h
-${PROJECT_SOURCE_DIR}/src/Var.h
-)
+set(IPhreeqc_Headers ${IPhreeqc_SOURCES})
+list(FILTER IPhreeqc_Headers INCLUDE REGEX ".*\.h")
+list(FILTER IPhreeqc_Headers INCLUDE REGEX "phreeqcpp")
+set(IPhreeqc_Top_Headers src/IPhreeqc.h src/IPhreeqc.hpp src/IPhreeqcCallbacks.h src/Var.h)
 
 if (IPHREEQC_ENABLE_MODULE)
   SET(IPhreeqc_SRC
@@ -323,7 +319,8 @@ endif()
 # install
 if (STANDALONE_BUILD EQUAL 1)
   install(TARGETS IPhreeqc DESTINATION ${CMAKE_INSTALL_LIBDIR})
-  install(FILES ${IPhreeqc_Headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+  install(FILES ${IPhreeqc_Top_Headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+  install(FILES ${IPhreeqc_Headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/phreeqcpp)
   if (WIN32)
     install(FILES ${IPhreeqc_SRC} DESTINATION src)
   else()
