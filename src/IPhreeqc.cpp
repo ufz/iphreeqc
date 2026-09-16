@@ -1151,6 +1151,7 @@ void IPhreeqc::check_database(const char* sz_routine)
 	}
 	this->SelectedOutputMap.clear();
 	this->SelectedOutputStringMap.clear();
+	this->SelectedOutputLinesMap.clear();
 
 	// release
 	this->LogString.clear();
